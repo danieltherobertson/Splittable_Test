@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UICollectionViewDataSource {
+class ViewController: UIViewController {
     
     @IBOutlet weak var servicesCollectionView: UICollectionView!
     let networkController = NetworkController()
@@ -18,35 +18,52 @@ class ViewController: UIViewController, UICollectionViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        servicesCollectionView.delegate = self
+        servicesCollectionView.dataSource = self
+        
         networkController.performRequestTo(URLPath: url) { (results) -> (Void) in
             self.servicesData = results.sorted(by:{ (serviceA, serviceB) -> Bool in
                 return serviceA.sortOrder < serviceB.sortOrder
             })
             print("\n MEMES \n \(self.servicesData)")
+            
+            OperationQueue.main.addOperation {
+                self.servicesCollectionView.reloadData()
+            }
+            
         }
-        
-
         // Do any additional setup after loading the view, typically from a nib.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+}
+
+extension ViewController: UICollectionViewDataSource {
+    public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCell", for: indexPath) as! ServiceCell
+        
+        cell.backgroundColor = .red
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
+    public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return servicesData.count
     }
 }
 
-
-extension UIViewController: UICollectionViewDelegateFlowLayout {
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
     
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 10
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: 150, height: 200)
+    }
 }
+
+
 
