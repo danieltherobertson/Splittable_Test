@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652E5FC01DDCD45800A9BF56 /* ServiceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652E5FBF1DDCD45800A9BF56 /* ServiceCell.swift */; };
 		654E4AE91DDC77F9003BC5AB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654E4AE81DDC77F9003BC5AB /* AppDelegate.swift */; };
 		654E4AEB1DDC77F9003BC5AB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654E4AEA1DDC77F9003BC5AB /* ViewController.swift */; };
 		654E4AEE1DDC77F9003BC5AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 654E4AEC1DDC77F9003BC5AB /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		652E5FBF1DDCD45800A9BF56 /* ServiceCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		654E4AE51DDC77F9003BC5AB /* Splittable_Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splittable_Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		654E4AE81DDC77F9003BC5AB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		654E4AEA1DDC77F9003BC5AB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 			children = (
 				654E4AE81DDC77F9003BC5AB /* AppDelegate.swift */,
 				654E4AEA1DDC77F9003BC5AB /* ViewController.swift */,
+				652E5FBF1DDCD45800A9BF56 /* ServiceCell.swift */,
 				654E4B191DDC7872003BC5AB /* NetworkController.swift */,
 				654E4B1B1DDC7880003BC5AB /* Service.swift */,
 				654E4AEC1DDC77F9003BC5AB /* Main.storyboard */,
@@ -271,6 +274,7 @@
 				654E4B1A1DDC7872003BC5AB /* NetworkController.swift in Sources */,
 				654E4AEB1DDC77F9003BC5AB /* ViewController.swift in Sources */,
 				654E4B1C1DDC7880003BC5AB /* Service.swift in Sources */,
+				652E5FC01DDCD45800A9BF56 /* ServiceCell.swift in Sources */,
 				654E4AF11DDC77F9003BC5AB /* Splittable_Test.xcdatamodeld in Sources */,
 				654E4AE91DDC77F9003BC5AB /* AppDelegate.swift in Sources */,
 			);
@@ -515,6 +519,7 @@
 				654E4B121DDC77F9003BC5AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		654E4B131DDC77F9003BC5AB /* Build configuration list for PBXNativeTarget "Splittable_TestTests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +528,7 @@
 				654E4B151DDC77F9003BC5AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		654E4B161DDC77F9003BC5AB /* Build configuration list for PBXNativeTarget "Splittable_TestUITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +537,7 @@
 				654E4B181DDC77F9003BC5AB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
