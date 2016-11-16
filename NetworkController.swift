@@ -10,9 +10,9 @@ import UIKit
 
 class NetworkController: NSObject {
  
-    var objects = [Service]()
+    var services = [Service]()
     
-    func performRequestTo(URLPath: String, completion:  @escaping ([Service]) -> (Void)) {
+    func performRequestTo(URLPath: String, completion: @escaping ([Service]) -> (Void)) {
         let url: URL = URL(string: URLPath)!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -28,7 +28,7 @@ class NetworkController: NSObject {
             do {
                 let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
                 if let arrayFromJSON = jsonDict as? [[String:Any]] {
-                    self.objects = arrayFromJSON.flatMap({ (item) -> Service? in
+                    self.services = arrayFromJSON.flatMap({ (item) -> Service? in
                         //creates new array, mapping each item to type ServiceImage. flatmap = any nils returned aren't included in array
                         return Service(dictionary: item)
                     })
@@ -37,8 +37,31 @@ class NetworkController: NSObject {
             catch let error {
                 print("Error: \(error)")
             }
-            completion(self.objects)
+            completion(self.services)
         }
+        self.save(data: services)
         task.resume()
+    }
+    
+    func save(data: [Service]) {
+        let directory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let writePath = directory.appendingPathComponent("/services.json")
+        
+        let dataToSave = NSKeyedArchiver.archivedData(withRootObject: data)
+        do {  try dataToSave.write(to: writePath) } catch let error { print("Error: \(error)") }
+    }
+    
+    func loadData() -> [Service]? {
+        let directory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as String
+        let readPath = directory.appending("/services.json")
+        
+        let fileMangager = FileManager.default
+        if fileMangager.fileExists(atPath: readPath) {
+            let data = NSData(contentsOfFile: readPath) as! Data
+            let savedServices = NSKeyedUnarchiver.unarchiveObject(with: data) as! [Service]
+            return savedServices
+        } else {
+            return nil
+        }
     }
 }
