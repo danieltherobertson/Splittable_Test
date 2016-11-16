@@ -9,5 +9,7 @@
 import UIKit
 
 class ServiceCell: UICollectionViewCell {
+    @IBOutlet weak var serviceName: UILabel!
+    @IBOutlet weak var serviceImage: UIImageView!
     
 }
