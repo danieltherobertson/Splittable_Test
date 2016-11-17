@@ -43,18 +43,4 @@ struct Service {
         }
         self.name = name
     }
-    
-//    func encodeWithCoder(aCoder: NSCoder) {
-//        aCoder.encode(self.sortOrder, forKey: "sort_Order")
-//        aCoder.encode(self.name, forKey: "name")
-//        aCoder.encode(self.imageURL, forKey: "image_url")
-//        aCoder.encode(self.id, forKey: "id")
-//    }
-//    
-//    init?(coder aDecoder: NSCoder) {
-//        self.sortOrder = aDecoder.decodeObject(forKey: "sort_order") as? Int
-//        self.name = aDecoder.decodeObject(forKey: "name") as? String
-//        self.imageURL = aDecoder.decodeObject(forKey: "image_url") as? String
-//        self.id = aDecoder.decodeObject(forKey: "id") as? String
-//    }
 }
