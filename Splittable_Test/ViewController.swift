@@ -25,38 +25,34 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-     //   UIApplication.shared.statusBarStyle = .lightContent
-
         
         splittableColours.append(splittableYellow);splittableColours.append(splittableRed);splittableColours.append(splittableBlue);splittableColours.append(splittableGreen)
         
         servicesCollectionView.delegate = self
         servicesCollectionView.dataSource = self
+        servicesCollectionView.contentInset.top = 20
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         
         view.backgroundColor = UIColor(red: 52/255, green: 55/255, blue: 63/255, alpha: 1.0)
         servicesCollectionView.backgroundColor = .clear
         
+        // ---> PERFORM NETWORK REQUEST, RELOAD COLLECTIONVIEW ON COMPLETION <---
         networkController.performRequestTo(URLPath: url) { (results) -> (Void) in
             self.servicesData = results.sorted(by:{ (serviceA, serviceB) -> Bool in
                 return serviceA.sortOrder < serviceB.sortOrder
             })
-            
 
-          //  print("\n MEMES \n \(self.servicesData)")
-            
             OperationQueue.main.addOperation {
                 self.servicesCollectionView.reloadData()
             }
-            
         }
         
+        // ---> SCHEDULE API POLLING <---
         let reloadData = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: "updataData" , userInfo: nil, repeats: true)
-        
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     func updataData() {
-        print("MILKY MEMES")
         networkController.performRequestTo(URLPath: url) { (results) -> (Void) in
             self.servicesData = results.sorted(by:{ (serviceA, serviceB) -> Bool in
                 return serviceA.sortOrder < serviceB.sortOrder
@@ -68,10 +64,11 @@ class ViewController: UIViewController {
         }
     }
     
+    // ---> SETUP PASSING URL FOR SEGUE TO WEBVIEW <---
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueShowWebView"{
             let destinationViewController = segue.destination as! WebViewController
-            print("URL BEING SENT IS:\(activeURL)")
+            print("URL BEING SENT IS: \(activeURL)")
             destinationViewController.urlString = activeURL
             destinationViewController.navigationTitle = activeServiceName
         }
@@ -79,6 +76,7 @@ class ViewController: UIViewController {
     }
 }
 
+// ---> SETUP DATA IN CELLS, SET NUMBER OF CELLS <---
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "serviceCell", for: indexPath) as! ServiceCell
@@ -90,8 +88,10 @@ extension ViewController: UICollectionViewDataSource {
                 cell.serviceURL.text = nil
                 cell.url = ""
             } else {
-                cell.serviceURL.text = self.servicesData[indexPath.row].url
-                cell.url = self.servicesData[indexPath.row].url
+                let fullURL = self.servicesData[indexPath.row].url!
+                let shorternedURL = fullURL.replacingOccurrences(of: "https://www.", with: "")
+                cell.serviceURL.text = shorternedURL
+                cell.url = fullURL
             }
  
            let urlString = String(servicesData[indexPath.row].imageURL)
@@ -109,6 +109,7 @@ extension ViewController: UICollectionViewDataSource {
         }
 
         cell.serviceName.textColor = .white
+        cell.serviceURL.textColor = .white
         
         return cell
     }
@@ -118,8 +119,7 @@ extension ViewController: UICollectionViewDataSource {
     }
 }
 
-
-
+// ---> SETUP CELL SPACING AND SIZE <---
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 20
@@ -139,6 +139,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+// ---> SETUP CELL SELECTION <---
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeCell = collectionView.cellForItem(at: indexPath) as! ServiceCell

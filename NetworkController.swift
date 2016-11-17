@@ -35,7 +35,7 @@ class NetworkController: NSObject {
                 let jsonDict = try JSONSerialization.jsonObject(with: data, options: [])
                 if let arrayFromJSON = jsonDict as? [[String:Any]] {
                     self.services = arrayFromJSON.flatMap({ (item) -> Service? in
-                        //creates new array, mapping each item to type ServiceImage. flatmap = any nils returned aren't included in array
+                        //creates new array, mapping each item to type ServiceImage.
                         return Service(dictionary: item)
                     })
                 }

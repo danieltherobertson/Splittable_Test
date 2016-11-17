@@ -16,7 +16,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="uar-dX-c6m">
@@ -44,24 +44,24 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87G-lK-Vmk">
-                                                    <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="10"/>
+                                                    <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="26" id="6aP-aS-Hxk"/>
+                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="18" id="6aP-aS-Hxk"/>
                                             <constraint firstItem="ZFI-ba-exy" firstAttribute="leading" secondItem="cK9-yL-HG4" secondAttribute="leading" id="8c8-7d-4qX"/>
-                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="87G-lK-Vmk" secondAttribute="bottom" constant="5" id="9WD-Cv-5My"/>
+                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="87G-lK-Vmk" secondAttribute="bottom" constant="2" id="9WD-Cv-5My"/>
                                             <constraint firstAttribute="trailing" secondItem="ZFI-ba-exy" secondAttribute="trailing" id="BgE-tR-rsD"/>
-                                            <constraint firstItem="ZFI-ba-exy" firstAttribute="top" secondItem="cK9-yL-HG4" secondAttribute="top" constant="5" id="FDP-dc-8bX"/>
+                                            <constraint firstItem="ZFI-ba-exy" firstAttribute="top" secondItem="cK9-yL-HG4" secondAttribute="top" constant="13" id="FDP-dc-8bX"/>
                                             <constraint firstItem="iXU-NT-cFv" firstAttribute="leading" secondItem="cK9-yL-HG4" secondAttribute="leading" id="I9l-dp-Tfj"/>
                                             <constraint firstAttribute="trailing" secondItem="iXU-NT-cFv" secondAttribute="trailing" id="W9E-Ww-DZO"/>
                                             <constraint firstAttribute="trailing" secondItem="87G-lK-Vmk" secondAttribute="trailing" id="i0X-0T-Fw6"/>
-                                            <constraint firstItem="87G-lK-Vmk" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="5" id="l1s-wK-Lra"/>
-                                            <constraint firstItem="87G-lK-Vmk" firstAttribute="leading" secondItem="cK9-yL-HG4" secondAttribute="leading" constant="8" id="pjb-qr-SII"/>
-                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="26" id="yXC-KJ-vyi"/>
+                                            <constraint firstItem="87G-lK-Vmk" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="6" id="l1s-wK-Lra"/>
+                                            <constraint firstItem="87G-lK-Vmk" firstAttribute="leading" secondItem="cK9-yL-HG4" secondAttribute="leading" constant="6" id="pjb-qr-SII"/>
+                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="18" id="yXC-KJ-vyi"/>
                                             <constraint firstAttribute="bottom" secondItem="iXU-NT-cFv" secondAttribute="bottom" id="zRV-iv-hfK"/>
                                         </constraints>
                                         <connections>
@@ -100,7 +100,7 @@
                         <viewControllerLayoutGuide type="bottom" id="pDY-Ol-kJ8"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hNj-4w-ne4">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -119,9 +119,15 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ljN-hF-OyJ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mBw-Yu-dpq">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="mBw-Yu-dpq">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" red="0.2196078431372549" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
