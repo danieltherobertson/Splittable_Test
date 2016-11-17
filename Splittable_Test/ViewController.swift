@@ -11,6 +11,7 @@ import UIKit
 class ViewController: UIViewController {
     
     @IBOutlet weak var servicesCollectionView: UICollectionView!
+    @IBOutlet weak var loadingServicesLabel: UILabel!
     let networkController = NetworkController()
     let url = "https://sheetsu.com/apis/v1.0/aaf79d4763af"
     var servicesData = [Service]()
@@ -44,6 +45,7 @@ class ViewController: UIViewController {
             })
 
             OperationQueue.main.addOperation {
+                self.loadingServicesLabel.isHidden = true
                 self.servicesCollectionView.reloadData()
             }
         }
@@ -71,6 +73,7 @@ class ViewController: UIViewController {
             print("URL BEING SENT IS: \(activeURL)")
             destinationViewController.urlString = activeURL
             destinationViewController.navigationTitle = activeServiceName
+            destinationViewController.navigationItem.hidesBackButton = false
         }
     
     }
@@ -87,9 +90,17 @@ extension ViewController: UICollectionViewDataSource {
             if servicesData[indexPath.row].url == "" {
                 cell.serviceURL.text = nil
                 cell.url = ""
+            }
+            // ---> Correct URLs with misspelling of 'Bizby' <---
+            if servicesData[indexPath.row].url.contains("bizby")  {
+                let fullURL = self.servicesData[indexPath.row].url!.replacingOccurrences(of: "bizby", with: "bizzby")
+                let shorternedURL = fullURL.replacingOccurrences(of: "https://www.bizzby.com", with: "...")
+                cell.serviceURL.text = shorternedURL
+                cell.url = fullURL
+                
             } else {
                 let fullURL = self.servicesData[indexPath.row].url!
-                let shorternedURL = fullURL.replacingOccurrences(of: "https://www.", with: "")
+                let shorternedURL = fullURL.replacingOccurrences(of: "https://www.bizzby.com", with: "...")
                 cell.serviceURL.text = shorternedURL
                 cell.url = fullURL
             }
@@ -122,20 +133,20 @@ extension ViewController: UICollectionViewDataSource {
 // ---> SETUP CELL SPACING AND SIZE <---
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsetsMake(0, 10, 0, 10)
+        return UIEdgeInsetsMake(0, 5, 0, 5)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
+        return 5
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        return CGSize(width: 150, height: 150)
+        return CGSize(width: 160, height: 150)
     }
 }
 
@@ -143,7 +154,6 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeCell = collectionView.cellForItem(at: indexPath) as! ServiceCell
-       print(activeCell.url)
         
         if activeCell.url == "" {
             collectionView.deselectItem(at: indexPath, animated: true)

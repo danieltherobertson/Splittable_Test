@@ -43,6 +43,7 @@ class NetworkController: NSObject {
             catch let error {
                 print("Error: \(error)")
             }
+            print("Network request complete!")
             completion(self.services)
         }
        // self.save(data: services)

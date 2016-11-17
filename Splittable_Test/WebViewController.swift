@@ -26,6 +26,7 @@ class WebViewController: UIViewController, WKNavigationDelegate {
         let url = URL(string: urlString)
         navigationItem.title = navigationTitle
         navigationItem.hidesBackButton = false
+        navigationItem.backBarButtonItem!.title = "Services"
         webView.load(URLRequest(url: url!))
         webView.allowsBackForwardNavigationGestures = true
 
