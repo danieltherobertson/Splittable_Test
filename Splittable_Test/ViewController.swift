@@ -40,6 +40,8 @@ class ViewController: UIViewController {
             self.servicesData = results.sorted(by:{ (serviceA, serviceB) -> Bool in
                 return serviceA.sortOrder < serviceB.sortOrder
             })
+            
+
           //  print("\n MEMES \n \(self.servicesData)")
             
             OperationQueue.main.addOperation {
@@ -47,7 +49,23 @@ class ViewController: UIViewController {
             }
             
         }
+        
+        let reloadData = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: "updataData" , userInfo: nil, repeats: true)
+        
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func updataData() {
+        print("MILKY MEMES")
+        networkController.performRequestTo(URLPath: url) { (results) -> (Void) in
+            self.servicesData = results.sorted(by:{ (serviceA, serviceB) -> Bool in
+                return serviceA.sortOrder < serviceB.sortOrder
+            })
+            
+            OperationQueue.main.addOperation {
+                self.servicesCollectionView.reloadData()
+            }
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -57,6 +75,7 @@ class ViewController: UIViewController {
             destinationViewController.urlString = activeURL
             destinationViewController.navigationTitle = activeServiceName
         }
+    
     }
 }
 
