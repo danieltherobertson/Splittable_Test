@@ -11,5 +11,7 @@ import UIKit
 class ServiceCell: UICollectionViewCell {
     @IBOutlet weak var serviceName: UILabel!
     @IBOutlet weak var serviceImage: UIImageView!
+    @IBOutlet weak var serviceURL: UILabel!
+    
     var url: String!
 }

@@ -37,27 +37,37 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iXU-NT-cFv"/>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFI-ba-exy">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="22" id="9Rc-JK-ebG"/>
+                                                        <constraint firstAttribute="height" constant="17" id="9Rc-JK-ebG"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="87G-lK-Vmk">
+                                                    <fontDescription key="fontDescription" name="Helvetica-LightOblique" family="Helvetica" pointSize="10"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
                                         <constraints>
-                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="13" id="6aP-aS-Hxk"/>
+                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="26" id="6aP-aS-Hxk"/>
                                             <constraint firstItem="ZFI-ba-exy" firstAttribute="leading" secondItem="cK9-yL-HG4" secondAttribute="leading" id="8c8-7d-4qX"/>
+                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="87G-lK-Vmk" secondAttribute="bottom" constant="5" id="9WD-Cv-5My"/>
                                             <constraint firstAttribute="trailing" secondItem="ZFI-ba-exy" secondAttribute="trailing" id="BgE-tR-rsD"/>
-                                            <constraint firstItem="ZFI-ba-exy" firstAttribute="top" secondItem="cK9-yL-HG4" secondAttribute="top" constant="13" id="FDP-dc-8bX"/>
+                                            <constraint firstItem="ZFI-ba-exy" firstAttribute="top" secondItem="cK9-yL-HG4" secondAttribute="top" constant="5" id="FDP-dc-8bX"/>
                                             <constraint firstItem="iXU-NT-cFv" firstAttribute="leading" secondItem="cK9-yL-HG4" secondAttribute="leading" id="I9l-dp-Tfj"/>
                                             <constraint firstAttribute="trailing" secondItem="iXU-NT-cFv" secondAttribute="trailing" id="W9E-Ww-DZO"/>
-                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="13" id="yXC-KJ-vyi"/>
+                                            <constraint firstAttribute="trailing" secondItem="87G-lK-Vmk" secondAttribute="trailing" id="i0X-0T-Fw6"/>
+                                            <constraint firstItem="87G-lK-Vmk" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="5" id="l1s-wK-Lra"/>
+                                            <constraint firstItem="87G-lK-Vmk" firstAttribute="leading" secondItem="cK9-yL-HG4" secondAttribute="leading" constant="8" id="pjb-qr-SII"/>
+                                            <constraint firstItem="iXU-NT-cFv" firstAttribute="top" secondItem="ZFI-ba-exy" secondAttribute="bottom" constant="26" id="yXC-KJ-vyi"/>
                                             <constraint firstAttribute="bottom" secondItem="iXU-NT-cFv" secondAttribute="bottom" id="zRV-iv-hfK"/>
                                         </constraints>
                                         <connections>
                                             <outlet property="serviceImage" destination="iXU-NT-cFv" id="u3d-k9-Mdo"/>
                                             <outlet property="serviceName" destination="ZFI-ba-exy" id="cfY-A3-6pt"/>
+                                            <outlet property="serviceURL" destination="87G-lK-Vmk" id="L1B-kQ-3Ye"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -78,7 +88,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="50" y="140"/>
+            <point key="canvasLocation" x="48.799999999999997" y="139.880059970015"/>
         </scene>
         <!--Web View Controller-->
         <scene sceneID="M71-6S-SQn">
@@ -93,7 +103,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Wxi-bd-EMm"/>
+                    <navigationItem key="navigationItem" id="Wxi-bd-EMm">
+                        <barButtonItem key="backBarButtonItem" title="Back To Services" id="Xun-yU-5LA">
+                            <color key="tintColor" red="0.0" green="0.95294117649999999" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IhL-W0-pxk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

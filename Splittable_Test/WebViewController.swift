@@ -12,7 +12,8 @@ import WebKit
 class WebViewController: UIViewController, WKNavigationDelegate {
     
     var webView: WKWebView!
-    var url: String!
+    var urlString: String!
+    var navigationTitle: String!
     
     override func loadView() {
         webView = WKWebView()
@@ -22,8 +23,11 @@ class WebViewController: UIViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(url)
-       // let url = URL(string: "https://www.hackingwithswift.com")
+        let url = URL(string: urlString)
+        navigationItem.title = navigationTitle
+        navigationItem.hidesBackButton = false
+        webView.load(URLRequest(url: url!))
+        webView.allowsBackForwardNavigationGestures = true
 
         // Do any additional setup after loading the view.
     }

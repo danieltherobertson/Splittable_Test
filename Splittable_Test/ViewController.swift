@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     let url = "https://sheetsu.com/apis/v1.0/aaf79d4763af"
     var servicesData = [Service]()
     var activeURL = ""
+    var activeServiceName = ""
     
     let splittableYellow = UIColor(red: 239/255, green: 186/255, blue: 52/255, alpha: 1.0)
     let splittableRed = UIColor(red: 219/255, green: 96/255, blue: 91/255, alpha: 1.0)
@@ -54,7 +55,8 @@ class ViewController: UIViewController {
             let destinationViewController = segue.destination as! UINavigationController
             let targetController = destinationViewController.topViewController as! WebViewController
             print("URL BEING SENT IS:\(activeURL)")
-            targetController.url = activeURL
+            targetController.urlString = activeURL
+            targetController.navigationTitle = activeServiceName
         }
     }
 }
@@ -65,9 +67,15 @@ extension ViewController: UICollectionViewDataSource {
         
         if indexPath.row < servicesData.count {
             cell.serviceName.text = servicesData[indexPath.row].name
-            cell.url = servicesData[indexPath.row].url
             
-            
+            if servicesData[indexPath.row].url == "" {
+                cell.serviceURL.text = nil
+                cell.url = ""
+            } else {
+                cell.serviceURL.text = self.servicesData[indexPath.row].url
+                cell.url = self.servicesData[indexPath.row].url
+            }
+ 
            let urlString = String(servicesData[indexPath.row].imageURL)
             
             do { var myImage = try UIImage(data: NSData(contentsOf: NSURL(string:urlString!) as! URL) as Data)
@@ -79,7 +87,7 @@ extension ViewController: UICollectionViewDataSource {
             cell.backgroundColor = splittableColours[indexPath.row % 4]
             cell.layer.cornerRadius = 10
             cell.layer.borderWidth = 2.5
-            cell.layer.borderColor = UIColor.white.cgColor
+            cell.layer.borderColor = UIColor(red: 218/255, green:223/255 , blue: 247/255, alpha: 1.0).cgColor
         }
 
         cell.serviceName.textColor = .white
@@ -116,9 +124,15 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 extension ViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let activeCell = collectionView.cellForItem(at: indexPath) as! ServiceCell
-        print(activeCell.serviceName.text)
-        activeURL = activeCell.url
-        performSegue(withIdentifier: "segueShowWebView", sender: self)
+       print(activeCell.url)
+        
+        if activeCell.url == "" {
+            collectionView.deselectItem(at: indexPath, animated: true)
+        } else {
+            activeURL = activeCell.url
+            activeServiceName = activeCell.serviceName.text!
+            performSegue(withIdentifier: "segueShowWebView", sender: self)
+        }
     }
 }
 
