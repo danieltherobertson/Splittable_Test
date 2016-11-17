@@ -52,11 +52,10 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueShowWebView"{
-            let destinationViewController = segue.destination as! UINavigationController
-            let targetController = destinationViewController.topViewController as! WebViewController
+            let destinationViewController = segue.destination as! WebViewController
             print("URL BEING SENT IS:\(activeURL)")
-            targetController.urlString = activeURL
-            targetController.navigationTitle = activeServiceName
+            destinationViewController.urlString = activeURL
+            destinationViewController.navigationTitle = activeServiceName
         }
     }
 }
